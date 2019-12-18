@@ -7,7 +7,7 @@ spring:
     nacos:
       config:
         file-extension: yaml
-        server-addr: nacos.jq.cn:80
+        server-addr: 192.168.123.10:8848
         ext-config:
           - data-id: app.yaml
             group: DEFAULT_GROUP
