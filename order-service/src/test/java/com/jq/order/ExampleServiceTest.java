@@ -1,7 +1,6 @@
 package com.jq.order;
 
 
-import com.jq.order.service.ExampleInnerService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,11 +14,4 @@ import javax.annotation.Resource;
 @SpringBootTest
 public class ExampleServiceTest {
 
-    @Resource
-    ExampleInnerService helloInnerService;
-
-    @Test
-    public void saveTest() {
-        log.info("service . value : {}", this.helloInnerService);
-    }
 }

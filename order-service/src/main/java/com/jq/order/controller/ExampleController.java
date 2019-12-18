@@ -37,7 +37,7 @@ public class ExampleController {
 
     @RequestMapping(value = "/exec/{str}", method = GET)
     public String exec(@PathVariable String str) {
-        log.info("exec {0}", str);
+        log.info("exec {}", str);
         return exampleApi.echo(str);
     }
 
