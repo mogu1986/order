@@ -82,10 +82,10 @@ spec:
         - name: order
           imagePullPolicy: IfNotPresent
           image: harbor.jq.cn/library/order:62
-#          resources:
-#            limits:
-#              cpu: 0.3
-#              memory: 1000Mi
+          resources:
+            limits:
+              cpu: 0.1
+              memory: 512Mi
 #          livenessProbe:
 #            failureThreshold: 8
 #            httpGet:
