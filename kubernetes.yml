@@ -81,7 +81,7 @@ spec:
       containers:
         - name: order
           imagePullPolicy: IfNotPresent
-          image: harbor.jq.cn/library/order:62
+          image: harbor.jq.cn/library/order:4
 #          resources:
 #            limits:
 #              cpu: 0.1
