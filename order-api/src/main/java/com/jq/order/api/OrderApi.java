@@ -5,7 +5,7 @@ package com.jq.order.api;
  * @Date: 2019-04-23 16:14
  * @Author: jim
  */
-public interface ExampleApi {
+public interface OrderApi {
 
     /**
      * @Description: 回声测试

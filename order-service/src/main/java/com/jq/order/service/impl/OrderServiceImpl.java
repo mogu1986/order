@@ -1,6 +1,6 @@
 package com.jq.order.service.impl;
 
-import com.jq.order.service.ExampleInnerService;
+import com.jq.order.service.OrderInnerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class ExampleServiceImpl implements ExampleInnerService {
+public class OrderServiceImpl implements OrderInnerService {
 
     /**
      * @Description: 回声测试

@@ -1,18 +1,13 @@
 package com.jq.order.controller;
 
-import com.alibaba.nacos.api.annotation.NacosInjected;
-import com.alibaba.nacos.api.naming.NamingService;
-import com.jq.order.service.ExampleInnerService;
+import com.mw.distribution.api.ExampleApi;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
@@ -37,19 +32,13 @@ public class ExampleController {
     @Value("${foo:null}")
     private String foo;
 
-    @NacosInjected
-    private NamingService namingService;
-
     @Resource
-    ExampleInnerService exampleInnerService;
-
-    @Autowired
-    private RestTemplate restTemplate;
+    ExampleApi exampleApi;
 
     @RequestMapping(value = "/exec/{str}", method = GET)
     public String exec(@PathVariable String str) {
         log.info("exec {0}", str);
-        return restTemplate.getForObject("http://distribution/echo/" + str, String.class);
+        return exampleApi.echo(str);
     }
 
     @GetMapping("/nacos")
@@ -60,27 +49,6 @@ public class ExampleController {
     @GetMapping("/foo")
     public String foo() {
         return foo;
-    }
-
-    @GetMapping("/hello")
-    public String hello() {
-        log.info("[hello]");
-        log.info("timeout = {}", this.timeout);
-        log.info("address = {}", this.address);
-        log.info("&%^&*$%^&$%^|||| /n  sfsfsf^&*^*");
-
-        log.warn("this is warn log");
-
-        try {
-            int x = 1 / 0;
-        } catch (Exception e) {
-            log.error("error {}", e);
-        }
-
-        String hostname = System.getenv("HOSTNAME");
-        String rs = this.exampleInnerService.echo(hostname);
-        rs = rs + ": hi sxh";
-        return rs;
     }
 
     @RequestMapping("/k8s/health")
