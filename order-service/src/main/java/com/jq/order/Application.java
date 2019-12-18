@@ -16,7 +16,7 @@ import org.springframework.web.client.RestTemplate;
  * @Author: jim
  */
 @Slf4j
-@EnableFeignClients
+@EnableFeignClients(basePackages = {"com.jq"})
 @EnableDiscoveryClient
 @SpringBootApplication
 public class Application {
