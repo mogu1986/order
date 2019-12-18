@@ -48,6 +48,7 @@ public class ExampleController {
 
     @RequestMapping(value = "/exec/{str}", method = GET)
     public String exec(@PathVariable String str) {
+        log.info("exec {0}", str);
         return restTemplate.getForObject("http://distribution/echo/" + str, String.class);
     }
 
