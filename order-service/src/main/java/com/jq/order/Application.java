@@ -15,8 +15,8 @@ import org.springframework.web.client.RestTemplate;
  * @Author: jim
  */
 @Slf4j
-@SpringBootApplication
 @EnableDiscoveryClient
+@SpringBootApplication
 public class Application {
 
     @LoadBalanced
