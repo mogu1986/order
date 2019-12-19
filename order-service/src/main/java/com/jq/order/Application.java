@@ -19,7 +19,7 @@ import org.springframework.web.client.RestTemplate;
 @Slf4j
 @EnableFeignClients(basePackages = {"com.jq"}, defaultConfiguration= FeignConfig.class)
 @EnableDiscoveryClient
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.jq"})
 public class Application {
 
     @LoadBalanced
