@@ -1,5 +1,6 @@
 package com.jq.order;
 
+import com.jq.boot.feign.FeignConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
  * @Author: jim
  */
 @Slf4j
-@EnableFeignClients(basePackages = {"com.jq"})
+@EnableFeignClients(basePackages = {"com.jq"}, defaultConfiguration= FeignConfig.class)
 @EnableDiscoveryClient
 @SpringBootApplication
 public class Application {
