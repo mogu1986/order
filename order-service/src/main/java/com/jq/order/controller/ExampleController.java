@@ -1,6 +1,6 @@
 package com.jq.order.controller;
 
-import com.mw.distribution.api.ExampleApi;
+import com.jq.distribution.api.ExampleApi;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
