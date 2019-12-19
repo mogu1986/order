@@ -10,7 +10,7 @@ spring:
         server-addr: 192.168.123.10:8848
         ext-config:
           - data-id: app.yaml
-            group: DEFAULT_GROUP
+            group: multi-data-ids
             refresh: true
       discovery:
         server-addr: ${spring.cloud.nacos.config.server-addr}
