@@ -10,4 +10,6 @@ import com.jq.order.api.OrderApi;
  */
 public interface OrderInnerService extends OrderApi {
 
+    String get(String key);
+
 }

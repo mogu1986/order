@@ -1,15 +1,10 @@
 package com.jq.order;
 
-import com.jq.boot.feign.FeignConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
-import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.cache.annotation.EnableCaching;
 
 /**
  * @Description: 启动类
@@ -17,16 +12,9 @@ import org.springframework.web.client.RestTemplate;
  * @Author: jim
  */
 @Slf4j
-@EnableFeignClients(basePackages = {"com.jq"}, defaultConfiguration= FeignConfig.class)
-@EnableDiscoveryClient
+@EnableCaching
 @SpringBootApplication(scanBasePackages = {"com.jq"})
 public class Application {
-
-    @LoadBalanced
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
 
     public static void main(String[] args) {
         new SpringApplicationBuilder(Application.class).web(WebApplicationType.SERVLET).run(args);

@@ -2,6 +2,7 @@ package com.jq.order.service.impl;
 
 import com.jq.order.service.OrderInnerService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,6 +13,12 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class OrderServiceImpl implements OrderInnerService {
+
+    @Cacheable(value = "RedisTest")
+    public String get(String key){
+        System.out.println("进入get方法");
+        return key;
+    }
 
     /**
      * @Description: 回声测试
