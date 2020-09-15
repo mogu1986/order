@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: docker-entrypoint
+  labels:
+    app: docker-entrypoint
+data:
+  docker-entrypoint.sh: |-
+    #!/bin/bash
+
+    set -e
+
+    # JVM Configuration
+    #===========================================================================================
+    JAVA_OPT="-server"
+
+    # set skywalking
+    if [[ "${SKYWALKING_ENABLED}" == "true" ]]; then
+    JAVA_OPT="${JAVA_OPT} -javaagent:/skywalking/agent/skywalking-agent.jar"
+    fi
+
+    # set cpu core
+    JAVA_OPT="${JAVA_OPT} -XX:ActiveProcessorCount=${ACTIVE_PROCESSOR_COUNT}"
+    JAVA_OPT="${JAVA_OPT} -XX:InitialRAMPercentage=${INITIAL_RAM_PERCENTAGE}"
+    JAVA_OPT="${JAVA_OPT} -XX:MinRAMPercentage=${MIN_RAM_PERCENTAGE}"
+    JAVA_OPT="${JAVA_OPT} -XX:MaxRAMPercentage=${MAX_RAM_PERCENTAGE}"
+    JAVA_OPT="${JAVA_OPT} -XX:MetaspaceSize=${JVM_MS}"
+    JAVA_OPT="${JAVA_OPT} -XX:MaxMetaspaceSize=${JVM_MMS}"
+
+    if [[ "${DEBUG}" == "y" ]]; then
+    JAVA_OPT="${JAVA_OPT} -Xdebug -Xrunjdwp:transport=dt_socket,address=9555,server=y,suspend=n"
+    fi
+
+    #===========================================================================================
+    # Setting system properties
+    #===========================================================================================
+    if [[ ! -z "${JAVA_OPT_EXT}" ]]; then
+    JAVA_OPT="${JAVA_OPT} ${JAVA_OPT_EXT}"
+    fi
+    JAVA_OPT="${JAVA_OPT} -Dfile.encoding=UTF-8"
+    JAVA_OPT="${JAVA_OPT} -Duser.timezone=Asia/Shanghai"
+    JAVA_OPT="${JAVA_OPT} -Djava.security.egd=file:/dev/./urandom"
+    JAVA_OPT="${JAVA_OPT} -Dspring.logPath=${SPRING_LOGPATH}"
+    JAVA_OPT="${JAVA_OPT} -Dserver.port=80"
+
+    JAVA_OPT="${JAVA_OPT} -jar /${JAR_NAME}.jar"
+    JAVA_OPT="${JAVA_OPT} --server.max-http-header-size=524288"
+
+    java ${JAVA_OPT}
