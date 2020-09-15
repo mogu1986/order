@@ -1,6 +1,8 @@
 spring:
   application:
     name: order
+  profiles:
+    active: local
   redis:
     host: 192.168.10.205
     port: 6379
