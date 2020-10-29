@@ -16,6 +16,10 @@
     <name>order-api</name>
     <dependencies>
         <dependency>
+            <groupId>com.jq.boot</groupId>
+            <artifactId>feign-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
