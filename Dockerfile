@@ -1,5 +1,8 @@
-FROM harbor.top.mw/library/jdk:8u212-alpine
+FROM harbor.top.mw/library/java-centos-openjdk8-jdk:1.8.0
 MAINTAINER gaowei@fengjing.com
+
+USER root
+
 ARG JAR_PATH
 ARG JAR_NAME=app
 ENV JAR_NAME=$JAR_NAME
@@ -17,11 +20,13 @@ ENV TZ="Asia/Shanghai" \
     JVM_XMN="1g" \
     JVM_MS="128m" \
     JVM_MMS="320m" \
-    DEBUG="n"
+    DEBUG="n" \
+    LD_PRELOAD="/usr/local/lib/faketime/libfaketime.so.1" \
+    FAKETIME="-30d"
 
 WORKDIR /
 
 RUN mkdir -p logs
 
 EXPOSE 80 9999
-ENTRYPOINT ["/sbin/tini", "--", "/bin/sh", "-c", "java $JAVA_OPTS -jar /$JAR_NAME.jar  $0 $@"]
+ENTRYPOINT ["/bin/sh", "-c", "java $JAVA_OPTS -jar /$JAR_NAME.jar  $0 $@"]
