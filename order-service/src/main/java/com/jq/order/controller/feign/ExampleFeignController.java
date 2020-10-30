@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping("/inner/order")
+@RequestMapping("/inner/order/order")
 public class ExampleFeignController implements OrderApi {
 
     @Override

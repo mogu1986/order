@@ -3,23 +3,14 @@ spring:
     name: order
   profiles:
     active: local
-  redis:
-    host: 192.168.10.205
-    port: 6379
-    password: 1qaz!QAZ
-    database: 0
-    expire: 3600
-    lettuce:
-      pool:
-        #连接池最大连接数默认8 负数表示无限制
-        max-active: 8
-        #连接池最大阻塞等待时间 默认值-1  负数表示无限制
-        max-wait: -1
-        #连接池最大空闲连接 默认8
-        max-idle: 8
-        #连接池最小空闲连接 默认0
-        min-idle: 0
   cloud:
     nacos:
+      config:
+        server-addr: 192.168.10.200:8848
+        file-extension: yaml
+        extension-configs:
+          - data-id: redis.yaml
+            group: ops
+            refresh: true
       discovery:
         server-addr: 192.168.10.200:8848

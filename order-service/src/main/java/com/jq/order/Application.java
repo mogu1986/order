@@ -16,7 +16,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  */
 @Slf4j
 @EnableCaching
-@EnableFeignClients(defaultConfiguration= FeignConfig.class)
+@EnableFeignClients(basePackages = {"com.jq"}, defaultConfiguration= FeignConfig.class)
 @EnableDiscoveryClient
 @SpringBootApplication(scanBasePackages = {"com.jq"})
 public class Application {
