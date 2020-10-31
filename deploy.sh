@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-export env=test
+export env=dev
 export name=order
-export version=4
+export version=1
 export jar_path=order-service/target/order-service.jar
-export host=order.test.mw
+export host=order.top.com
 
 mvn clean package -Dmaven.test.skip=true -U
 
