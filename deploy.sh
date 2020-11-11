@@ -2,7 +2,7 @@
 
 export env=dev
 export name=order
-export version=1
+export version=3
 export jar_path=order-service/target/order-service.jar
 export host=order.top.com
 
